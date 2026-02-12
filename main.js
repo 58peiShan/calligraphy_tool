@@ -408,7 +408,7 @@
       });
 
       const deleteBtn = document.createElement('button');
-      deleteBtn.textContent = '刪除';
+      deleteBtn.textContent = '❌';
       deleteBtn.addEventListener('click', () => {
         favorites = favorites.filter(f => f.id !== item.id);
         saveFavorites(favorites);
