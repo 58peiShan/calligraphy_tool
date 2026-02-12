@@ -292,7 +292,7 @@ body.theme-light .random-btn:hover {
     border: 1px solid rgba(251, 191, 36, 0.8);
     background: radial-gradient(
         circle at top left,
-        rgba(23, 37, 84, 1),
+        rgb(0, 0, 0),
         rgba(15, 23, 42, 0.98)
     );
     color: #facc15;
@@ -303,7 +303,7 @@ body.theme-light .random-btn:hover {
 #saveFavoriteBtn:hover {
     background: radial-gradient(
         circle at top left,
-        rgba(30, 64, 175, 1),
+        rgb(17, 24, 46),
         rgba(21, 24, 40, 1)
     );
 }
@@ -661,6 +661,24 @@ body.theme-light .char-glyph-xing {
 .char-footer button:hover {
     background: radial-gradient(
         circle at top left,
+        rgba(35, 61, 206, 0.96),
+        rgb(15, 22, 42)
+    );
+    border-color: rgba(191, 219, 254, 0.9);
+}
+
+.char-footer button.delete:hover {
+    background: radial-gradient(
+        circle at top left,
+        rgba(206, 35, 35, 0.96),
+        rgb(29, 12, 12)
+    );
+    border-color: rgba(191, 219, 254, 0.9);
+}
+
+body.theme-light .char-footer button.delete:hover {
+    background: radial-gradient(
+        circle at top left,
         rgba(30, 64, 175, 0.96),
         rgba(15, 23, 42, 1)
     );
@@ -684,6 +702,8 @@ body.theme-light .char-footer button.delete {
 }
 body.theme-light .char-footer button.delete:hover {
     background: #ffefef;
+    border: 1px solid #eb2525;
+
 }
 
 .char-note {
