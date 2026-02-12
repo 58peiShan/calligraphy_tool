@@ -66,11 +66,11 @@
 
   // 範例春聯資料（上下聯）
   const sampleCouplets = [
-    { top: '春風和煦千門旺', bottom: '瑞氣臨門萬事興' },
+    { top: '億馬當先', bottom: '' },
     { top: '吉星高照平安宅', bottom: '喜氣常臨富貴門' },
     { top: '新春福到迎祥瑞', bottom: '佳節門開納吉祥' },
     { top: '花開富貴春常在', bottom: '竹報平安福自來' },
-    { top: '年年順景財源廣', bottom: '歲歲平安福壽長' },
+    { top: '財運隨馬奔新歲', bottom: '富氣因馬進滿堂' },
   ];
 
   // 簡單的圖片放大功能
@@ -101,6 +101,8 @@
       glyph.className = 'char-glyph-kai';
     } else if (style === '隸書') {
       glyph.className = 'char-glyph-li';
+    } else if (style === '行書') {
+      glyph.className = 'char-glyph-xing';
     } else if (style === '篆書') {
       glyph.className = 'char-glyph-seal';
     } else {
@@ -236,6 +238,12 @@
         // 隸書且沒有自訂圖片時，使用 MoeLi 隸書字型顯示大字
         const glyph = document.createElement('div');
         glyph.className = 'char-glyph-li';
+        glyph.textContent = ch;
+        imageWrapper.appendChild(glyph);
+      } else if (style === '行書' && !hasCustomImage()) {
+        // 行書且沒有自訂圖片時，使用王漢宗中行書繁字型顯示大字
+        const glyph = document.createElement('div');
+        glyph.className = 'char-glyph-xing';
         glyph.textContent = ch;
         imageWrapper.appendChild(glyph);
       } else if (style === '篆書' && !hasCustomImage()) {

@@ -9,6 +9,7 @@
   <link rel="preload" href="fonts/TW-Kai-98_1.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="fonts/MoeLI.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="fonts/chongxi_seal.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="fonts/王漢宗中行書繁.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap" rel="stylesheet">
@@ -16,12 +17,11 @@
 <body>
   <div class="app-container">
     <header>
-      <h1>字體小工具</h1>
+      <h1>書法字體小工具</h1>
       <p>輸入要寫的句子，選擇字體。</p>
     </header>
 
     <section class="search-panel">
-      <label style="margin-bottom: 8px;" for="sentenceInput">要寫的句子：</label>
       <textarea id="sentenceInput" rows="3" placeholder="例如：馬到成功"></textarea>
 
       <button id="randomCoupletBtn" type="button" class="random-btn">想不到句子嗎？</button>
@@ -32,7 +32,7 @@
           <label><input type="radio" name="style" value="楷書" checked> 楷書</label>
           <label><input type="radio" name="style" value="隸書"> 隸書</label>
           <label><input type="radio" name ="style" value="行書"> 行書</label>
-          <label><input type="radio" name="style" value="草書"> 草書</label>
+          <!-- <label><input type="radio" name="style" value="草書"> 草書</label> -->
           <label><input type="radio" name="style" value="篆書"> 篆書</label>
         </div>
         <button id="searchBtn">搜尋</button>
@@ -40,7 +40,7 @@
 
       <p class="hint">提示：第一次使用時，系統會用示意圖。你可以替換成自己喜歡的圖片網址，系統會記住你的選擇（保存在本機瀏覽器）。</p>
       <div class="favorites-controls">
-        <button id="saveFavoriteBtn">⭐ 收藏這句</button>
+        <button id="saveFavoriteBtn">⭐ 收藏</button>
       </div>
     </section>
 
