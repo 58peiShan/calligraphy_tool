@@ -316,16 +316,27 @@
       if (trimmed) {
         setCustomImage(style, ch, trimmed);
         // 有自訂圖片後，改成圖片模式
-        const img = document.createElement('img');
-        img.alt = `${ch} - ${style}`;
-        img.src = trimmed;
-        imageWrapper.innerHTML = '';
-        imageWrapper.appendChild(img);
+        renderContent();
+        updateButtons();
       } else {
         // 若清空則恢復成預設（占位或內建）
         setCustomImage(style, ch, '');
         renderContent();
+        updateButtons();
       }
+    });
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete';
+    deleteBtn.textContent = '刪除自訂圖片';
+    deleteBtn.addEventListener('click', () => {
+      if (!hasCustomImage()) return;
+      if (!window.confirm(`確定要刪除「${ch}」的 ${style} 自訂圖片並恢復原本字型嗎？`)) {
+        return;
+      }
+      setCustomImage(style, ch, '');
+      renderContent();
+      updateButtons();
     });
 
     const note = document.createElement('div');
@@ -333,11 +344,24 @@
     note.textContent = '備註：圖片僅示意，可替換成喜歡的字帖。';
 
     footer.appendChild(editBtn);
+    footer.appendChild(deleteBtn);
     footer.appendChild(note);
 
     card.appendChild(header);
     card.appendChild(imageWrapper);
     card.appendChild(footer);
+
+    function updateButtons() {
+      // 有自訂圖片時才顯示刪除按鈕
+      if (hasCustomImage()) {
+        deleteBtn.style.display = '';
+      } else {
+        deleteBtn.style.display = 'none';
+      }
+    }
+
+    // 根據目前狀態初始化按鈕顯示
+    updateButtons();
 
     return card;
   }

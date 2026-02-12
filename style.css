@@ -228,12 +228,10 @@ body.theme-light .font-select-group label {
     cursor: pointer;
     white-space: nowrap;
     font-weight: 600;
-   
 }
 
 #searchBtn:hover {
-    background: linear-gradient(135deg,#2563eb, #5880d6);
-  
+    background: linear-gradient(135deg, #2563eb, #5880d6);
 }
 
 .hint {
@@ -678,6 +676,14 @@ body.theme-light .char-footer button {
 body.theme-light .char-footer button:hover {
     background: #eff6ff;
     border-color: #2563eb;
+}
+
+body.theme-light .char-footer button.delete {
+    border: 1px solid #eb2525;
+    color: #eb2525;
+}
+body.theme-light .char-footer button.delete:hover {
+    background: #ffefef;
 }
 
 .char-note {
