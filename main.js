@@ -11,6 +11,7 @@
   const imageZoomTarget = document.getElementById('imageZoomTarget');
   const imageZoomGlyph = document.getElementById('imageZoomGlyph');
   const imageZoomCloseBtn = imageZoomModal ? imageZoomModal.querySelector('.image-zoom-close') : null;
+  const themeToggleBtn = document.getElementById('themeToggle');
 
   // 內建示意資料：（實際使用時建議改成你自己準備的字帖圖片或資料來源）
   // 為了避免版權問題，這裡只用占位圖片服務示意，並非真正的書法字帖。
@@ -63,6 +64,35 @@
   }
 
   let favorites = loadFavorites();
+
+  // 主題（深夜 / 白天）切換
+  function applyTheme(theme) {
+    const body = document.body;
+    if (!body) return;
+
+    body.classList.remove('theme-dark', 'theme-light');
+    body.classList.add(theme);
+
+    try {
+      localStorage.setItem('calligraphy-theme', theme);
+    } catch (e) {
+      console.warn('Failed to save theme', e);
+    }
+
+    updateThemeToggleLabel();
+  }
+
+  function updateThemeToggleLabel() {
+    if (!themeToggleBtn) return;
+    const body = document.body;
+    if (!body) return;
+
+    if (body.classList.contains('theme-dark')) {
+      themeToggleBtn.textContent = '切換為白天模式';
+    } else {
+      themeToggleBtn.textContent = '切換為深夜模式';
+    }
+  }
 
   // 範例春聯資料（上下聯）
   const sampleCouplets = [
@@ -464,6 +494,28 @@
       onSearch();
     }
   });
+
+  // 主題切換按鈕
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const body = document.body;
+      if (!body) return;
+      const nextTheme = body.classList.contains('theme-dark') ? 'theme-light' : 'theme-dark';
+      applyTheme(nextTheme);
+    });
+  }
+
+  // 初始化主題（從 localStorage 或預設深夜模式）
+  (function initTheme() {
+    let stored = null;
+    try {
+      stored = localStorage.getItem('calligraphy-theme');
+    } catch (e) {
+      console.warn('Failed to read theme', e);
+    }
+    const initial = stored === 'theme-light' || stored === 'theme-dark' ? stored : 'theme-dark';
+    applyTheme(initial);
+  })();
 
   // 初始化收藏列表
   renderFavorites();

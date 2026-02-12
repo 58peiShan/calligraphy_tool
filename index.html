@@ -1,79 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <title>書法字體查詢小工具</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <!-- 預先載入書法字型，減少搜尋時字體閃動 -->
-  <link rel="preload" href="fonts/TW-Kai-98_1.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="fonts/MoeLI.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="fonts/chongxi_seal.otf" as="font" type="font/otf" crossorigin>
-  <link rel="preload" href="fonts/王漢宗中行書繁.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="app-container">
-    <header>
-      <h1>書法字體小工具</h1>
-      <p>輸入要寫的句子，選擇字體。</p>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <title>書法字體查詢小工具</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="style.css" />
+        <!-- 預先載入書法字型，減少搜尋時字體閃動 -->
+        <link
+            rel="preload"
+            href="fonts/TW-Kai-98_1.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="fonts/MoeLI.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="fonts/chongxi_seal.otf"
+            as="font"
+            type="font/otf"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="fonts/王漢宗中行書繁.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="theme-dark">
+        <div class="app-container">
+            <header>
+                <div class="header-top">
+                    <h1>書法字體小工具</h1>
+                    <button id="themeToggle" class="theme-toggle" type="button">
+                        切換為白天模式
+                    </button>
+                </div>
+                <p>輸入要寫的句子，選擇字體。</p>
+            </header>
 
-    <section class="search-panel">
-      <textarea id="sentenceInput" rows="3" placeholder="例如：馬到成功"></textarea>
+            <section class="search-panel">
+                <textarea
+                    id="sentenceInput"
+                    rows="3"
+                    placeholder="例如：馬到成功"
+                ></textarea>
 
-      <button id="randomCoupletBtn" type="button" class="random-btn">想不到句子嗎？</button>
+                <button id="randomCoupletBtn" type="button" class="random-btn">
+                    想不到句子嗎？
+                </button>
 
-      <div class="controls-row">
-        <div class="font-select-group">
-          <span>字體：</span>
-          <label><input type="radio" name="style" value="楷書" checked> 楷書</label>
-          <label><input type="radio" name="style" value="隸書"> 隸書</label>
-          <label><input type="radio" name ="style" value="行書"> 行書</label>
-          <!-- <label><input type="radio" name="style" value="草書"> 草書</label> -->
-          <label><input type="radio" name="style" value="篆書"> 篆書</label>
+                <div class="controls-row">
+                    <div class="font-select-group">
+                        <span>字體：</span>
+                        <label
+                            ><input
+                                type="radio"
+                                name="style"
+                                value="楷書"
+                                checked
+                            />
+                            楷書</label
+                        >
+                        <label
+                            ><input type="radio" name="style" value="隸書" />
+                            隸書</label
+                        >
+                        <label
+                            ><input type="radio" name="style" value="行書" />
+                            行書</label
+                        >
+                        <!-- <label><input type="radio" name="style" value="草書"> 草書</label> -->
+                        <label
+                            ><input type="radio" name="style" value="篆書" />
+                            篆書</label
+                        >
+                    </div>
+                    <button id="searchBtn">搜尋</button>
+                </div>
+
+                <p class="hint">
+                    提示：第一次使用時，系統會用示意圖。你可以替換成自己喜歡的圖片網址，系統會記住你的選擇（保存在本機瀏覽器）。
+                </p>
+                
+            </section>
+
+            <section class="favorites-panel">
+                <h2>收藏的句子</h2>
+                <div id="noFavorites" class="no-favorites">
+                    目前尚未收藏句子。
+                </div>
+                <ul id="favoritesList" class="favorites-list"></ul>
+            </section>
+
+            <section class="results-panel">
+                <h2>搜尋結果</h2>
+                <div class="favorites-controls">
+                    <button id="saveFavoriteBtn">⭐ 收藏</button>
+                </div>
+                <div id="results" class="results-grid"></div>
+                <div id="noResults" class="no-results" hidden>
+                    請先輸入句子並按下「搜尋」。
+                </div>
+            </section>
+
+            <footer class="app-footer">
+                隸書字型來源：教育部隸書字形檔（Version
+                3.00），著作權人：中華民國教育部， 授權條款為「創用 CC
+                姓名標示-禁止改作 3.0 臺灣版」。<br />
+                楷書字型來源：CNS11643 中文標準交換碼全字庫楷體字型檔。<br />
+                篆書字型來源：「崇羲篆體」 chongxi_seal.otf，授權條款為「CC
+                姓名標示-禁止改作 3.0 台灣及其後版本」。
+            </footer>
         </div>
-        <button id="searchBtn">搜尋</button>
-      </div>
 
-      <p class="hint">提示：第一次使用時，系統會用示意圖。你可以替換成自己喜歡的圖片網址，系統會記住你的選擇（保存在本機瀏覽器）。</p>
-      <div class="favorites-controls">
-        <button id="saveFavoriteBtn">⭐ 收藏</button>
-      </div>
-    </section>
+        <!-- 圖片放大用的全螢幕遮罩 -->
+        <div id="imageZoomModal" class="image-zoom-modal" aria-hidden="true">
+            <div class="image-zoom-backdrop"></div>
+            <div class="image-zoom-content" role="dialog" aria-modal="true">
+                <button
+                    type="button"
+                    class="image-zoom-close"
+                    aria-label="關閉放大圖片"
+                >
+                    ×
+                </button>
+                <img id="imageZoomTarget" alt="放大顯示的圖片" />
+                <div
+                    id="imageZoomGlyph"
+                    class="image-zoom-glyph"
+                    aria-hidden="true"
+                ></div>
+            </div>
+        </div>
 
-    <section class="favorites-panel">
-      <h2>收藏的句子</h2>
-      <div id="noFavorites" class="no-favorites">目前尚未收藏句子。</div>
-      <ul id="favoritesList" class="favorites-list"></ul>
-    </section>
-
-    <section class="results-panel">
-      <h2>搜尋結果</h2>
-      <div id="results" class="results-grid"></div>
-      <div id="noResults" class="no-results" hidden>請先輸入句子並按下「搜尋」。</div>
-    </section>
-
-    <footer class="app-footer">
-      隸書字型來源：教育部隸書字形檔（Version 3.00），著作權人：中華民國教育部，
-      授權條款為「創用 CC 姓名標示-禁止改作 3.0 臺灣版」。<br />
-      楷書字型來源：CNS11643 中文標準交換碼全字庫楷體字型檔。<br />
-      篆書字型來源：「崇羲篆體」 chongxi_seal.otf，授權條款為「CC 姓名標示-禁止改作 3.0 台灣及其後版本」。
-    </footer>
-  </div>
-
-  <!-- 圖片放大用的全螢幕遮罩 -->
-  <div id="imageZoomModal" class="image-zoom-modal" aria-hidden="true">
-    <div class="image-zoom-backdrop"></div>
-    <div class="image-zoom-content" role="dialog" aria-modal="true">
-      <button type="button" class="image-zoom-close" aria-label="關閉放大圖片">×</button>
-      <img id="imageZoomTarget" alt="放大顯示的圖片" />
-      <div id="imageZoomGlyph" class="image-zoom-glyph" aria-hidden="true"></div>
-    </div>
-  </div>
-
-  <script src="main.js"></script>
-</body>
+        <script src="main.js"></script>
+    </body>
 </html>
