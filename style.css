@@ -596,7 +596,7 @@ body.theme-light .char-image-wrapper {
 }
 
 .char-glyph-kai {
-    font-family: "DFKai-sb", "標楷體", serif;
+    font-family: "CNSKai", "DFKai-sb", "標楷體", serif;
     font-size: 5rem;
     line-height: 1.1;
     text-align: center;
@@ -605,7 +605,7 @@ body.theme-light .char-image-wrapper {
 }
 
 .char-glyph-li {
-    font-family: "MoeLi", serif;
+    font-family: "MoeLi", "PingFang TC", "Noto Serif TC", serif;
     font-size: 5rem;
     line-height: 1.1;
     text-align: center;
@@ -614,7 +614,7 @@ body.theme-light .char-image-wrapper {
 }
 
 .char-glyph-seal {
-    font-family: "ChongXiSeal", serif;
+    font-family: "ChongXiSeal", "PingFang TC", "Noto Serif TC", serif;
     font-size: 5rem;
     line-height: 1.1;
     text-align: center;
@@ -623,7 +623,7 @@ body.theme-light .char-image-wrapper {
 }
 
 .char-glyph-xing {
-    font-family: "WHZhongXing", serif;
+    font-family: "WHZhongXing", "PingFang TC", "Noto Serif TC", serif;
     font-size: 5rem;
     line-height: 1.1;
     text-align: center;
